@@ -44,7 +44,7 @@ var cameraPlugin = {
             {quality: cameraPlugin.quality, 
              destinationType: cameraPlugin.destinationType,
              sourceType: cameraPlugin.sourceType,
-             encodingType: cameraPlugin.encodingType  // Added to be explict, even though this is the `default`
+             encodingType: cameraPlugin.encodingType
             });
     },
     //
@@ -57,7 +57,7 @@ var cameraPlugin = {
     },
     //
     onFail : function (message) {
-        alert('Failed because: ' + message);
+        alert('cameraPlugin Failed because: ' + message);
     }
 };
 
