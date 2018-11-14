@@ -92,7 +92,7 @@ var app = {
     //
     onDOMContentLoaded : function () {
         console.log("app.onDOMContentLoaded()");
-        app.init();    // Initialize all the modules
+        //app.init();    // Initialize all the modules
         app.hook();    // Hook the touch screen (mouse/keyboard)
     },
     //
@@ -108,7 +108,7 @@ var app = {
         // expose or hide the "camera.png" icon 
         if (app.isCameraAvailable) {
             document.getElementById('imgCamera').className = 'expose';
-            cameraPlugin.options({'callback': pnpApp.cameraCallback });
+            //cameraPlugin.options({'callback': pnpApp.cameraCallback });
         } else {
             document.getElementById('imgCamera').className = 'hidden';
         }
