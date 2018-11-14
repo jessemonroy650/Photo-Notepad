@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.bsdmasterindex.photo-notepad"
+        version     = "1.0.0"
+        android-versionCode = "100" >
+
+        <!-- https://build.phonegap.com/current-support -->
+        <preference name="phonegap-version" value="cli-7.1.0" />
+
+        <name>Photo Notepad</name>
+        <description>Photo Notepad</description>
+        <author href="http://bsdmasterindex.com" email="jessemonroy650@yahoo.com">Jesse Monroy</author>
+
+        <!-- Android SECTION -->
+        <platform name="android" />
+
+        <!-- PLUGINS PLUGINS -->
+        <plugin name="cordova-plugin-camera" spec="~4.0.3" />
+        <plugin name="cordova-plugin-device" spec="~2.0.2" />
+
+    </widget>

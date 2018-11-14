@@ -3,44 +3,50 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Photo Notepad</title>
+    <meta http-equiv="Content-Security-Policy"
+             content="default-src * data:;
+                      media-src *;
+                      style-src * 'self' 'unsafe-inline' 'unsafe-eval';
+                      script-src * 'self' 'unsafe-inline' 'unsafe-eval';" />
 	<meta name="viewport" content="width=device-width">
 	<!-- Resource Information -->
-	<link rel="stylesheet" type="text/css" href=index.css>
+	<link rel="stylesheet" type="text/css" href=css/buttons.css>
+	<link rel="stylesheet" type="text/css" href=css/messages.css>
+	<link rel="stylesheet" type="text/css" href=css/index.css>
+
 	<script type="text/javascript;" src="cordova.js"></script>
-	<script type="text/javascript;" src="photonotepad.js"></script>
 	<script type="text/javascript;" src="js/fastclick.js"></script>
 	<script type="text/javascript;" src="js/zepto.js"></script>
+
+	<script type="text/javascript;" src="js/formsNpanes.js"></script>
+	<script type="text/javascript;" src="js/photoNotepad.js"></script>
+	<script type="text/javascript;" src="js/camera.js"></script>
 	<script type="text/javascript;" src="js/localstore.js"></script>
 	<script type="text/javascript;" src="js/pgResizeBase64.js"></script>
-	<script type="text/javascript;" src="app.js"></script>
+	<script type="text/javascript;" src="js/app.js"></script>
   </head>
 <body>
-
 	<div id=header class=header>
-		<img title="configure output" id=menubar src=images/3menubars_lightgrey.png>
-		<img title=""                id=app_icon src=images/app-icon.png>
-		<div id=app_title>Photo Notepad v<span id=version></span></div>
+		<img title='configure output' id=menubar  src=images/3menubars_lightgrey.png>
+		<img title=''                 id=app_icon src=images/app-icon.png>
+		<div                          id=app_title>Photo Notepad v<span id=version></span></div>
 	</div>
-    <div id=controlPanel class=" clearfix" >
-        <span id=summaryStorage class="truncate clearfix">1 file available &mdash; now.</span>
-        <img title="localstorage available" id="imgLocalStore" src=images/storage.png>
+    <div id=controlPanel class='clearfix' >
+        <span id=recordSummary class='truncate clearfix'></span>
+        <img  title="camera available"       id=imgCamera     src=images/camera.png>
+        <img  title="localstorage available" id=imgLocalStore src=images/storage.png>
     </div>
 
-    <div class="record clearfix" >
-        <canvas id=canvasImage>Canvas not working.</canvas>
-        <span id=note class="summaryNote truncate" >abc def ghi jkl mno pqr stuv wxyz. This is some data, today, yesterday &mdash; now.</span>
-        <span id=date class="calenderDate truncate">October 31, 2018</span>
+    <div id=debug class='thinBorder smallFont truncate'>&nbsp;</div>
+    <!-- ------------------------------------------------------ -->
+    <div id=recordSpec class="statusWrapper spacer recordSpace hidden">
     </div>
-
-    <div id=statusWrapper><span id=recordSpec class="spacer recordSpace"></div>
-    <hr>
-    <div id=statusWrapper><span id=status class="spacer recordSpace"></div>
-    <hr>
-    <div id=statusWrapper><span id=database class="spacer recordSpace"></div>
-
-
     <div class="">
-        <img width=153px height=86px id=originalImage title="Dad & Benny" src="" />
+        <h3>Temporary Holding/Processing Area</h3>
+        <img id=originalImage width=33 >
+        <canvas id=tempCanvas>Canvas not working.</canvas>
+    </div>
+    <div id=appConfig class='statusWrapper hidden'>
     </div>
 
 </body>
