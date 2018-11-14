@@ -8,6 +8,8 @@ var app = {
     isCordova   : false,
 
     cameraCallback (imgURL) {
+        $('#debug').html(imgURL);
+        $('#theImage').attr('src', imgURL);
     },
     //
     hook : function () {
@@ -18,9 +20,13 @@ var app = {
         $('#saveButton').on(app.targetEvent, note.handleInput);
         $('#summaryButton').on(app.targetEvent, note.summaryOfList);
         $('#cameraButton').on(app.targetEvent, function () {
-            //cameraPlugin.callback = app.cameraCallback;
-            if (cameraPlugin.isCameraAvailable()) {
-                cameraPlugin.getPicture(function(imgURL) { $('#debug').html(imgURL) });
+            if (app.isCameraAvailable == true) {
+                $('#debug').html("Getting Camera ... ");
+                cameraPlugin.callback = app.cameraCallback;
+                // use a short timeout, text does not display
+                setTimeout(cameraPlugin.getPicture, 200);
+            } else { 
+                $('#debug').html("No Camera.");
             }
         });
     },
