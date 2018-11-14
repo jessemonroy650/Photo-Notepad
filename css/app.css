@@ -1,6 +1,5 @@
 * {margin:0;padding:0;font-size:large;}
-#appIcon {height:48px;width:48px;}
-#isCordova {background-color:#ffcccc;}
+.height100percent {height:100%}
 .hidden {visibility:collapse;display:none;}
 .expose {visibility:visible;display:block;} /* Here for completeness only. */
 .truncate {white-space: nowrap;overflow-x: hidden;overflow: hidden;text-overflow: ellipsis;}
@@ -8,7 +7,21 @@
 .smallFont {font-size:x-small;}
 .buttonMargin {margin:0.2em;}
 .textPad {padding:0.2em}
-.spacer {padding:0.5em;}
+.spacer {padding:0.5em;clear:both;}
+.recordSpace {margin:0.5em;}
+.clearfix {overflow: auto;}
+.clearfix::after {content: "";clear:both;display:table;}
+
+#debug {background-color:#ff8080;width:100%;line-height:1.2em;}
+#isCordova {background-color:#ffcccc;}
+
+/* header, panel buttons, titles, icons */
+.header  {width:100%;margin:0;padding:0;min-height:50px;}
+#header  {text-align:center;background-color:#f5cc7c;}
+#menubar   {cursor:pointer;border:0;float:right;}
+#appIcon  {cursor:pointer;border:0;float:left;height:48px;width:48px;padding:1px;}
+#appTitle {font-family:monospace;font-size:1.2em;padding:1em;}
+
 
 #notesWrapper {}
 #noteNote {}

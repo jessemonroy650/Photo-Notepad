@@ -32,6 +32,8 @@ var app = {
         document.getElementById('isCordova').style.backgroundColor = '#aaccff'; // blueish color
         document.getElementById('isLocalStorageAvailable').innerHTML = app.isLocalStorageAvailable;
         //
+        document.getElementById('version').innerHTML = app.version;
+        //
         app.hook();
     },
     //
@@ -41,7 +43,7 @@ var app = {
         app.isCordova                             = (typeof window.cordova !== "undefined");
         app.isCameraAvailable                     = cameraPlugin.isCameraAvailable();
         //
-        document.getElementById('appIcon').src    = 'img/apple.png';
+        document.getElementById('appIcon').src    = 'img/app-icon.png';
         document.getElementById('test').innerHTML = 'app.onDeviceReady';
         document.getElementById('isCordova').innerHTML               = app.isCordova;
         document.getElementById('isCordova').style.backgroundColor   = '#ccffcc'; // greenish color

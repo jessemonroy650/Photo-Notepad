@@ -8,7 +8,7 @@
         <preference name="phonegap-version" value="cli-7.1.0" />
 
         <name>Photo Notepad</name>
-        <description>Photo Notepad a simple photo app to store notes with each photograph</description>
+        <description>a simple photo app to store notes with each photograph</description>
         <author href="http://bsdmasterindex.com" email="jessemonroy650@yahoo.com">
         Jesse Monroy
         </author>
