@@ -24,7 +24,7 @@ var app = {
                 $('#debug').html("Getting Camera ... ");
                 cameraPlugin.callback = app.cameraCallback;
                 // use a short timeout, text does not display
-                setTimeout(cameraPlugin.getPicture, 200);
+                setTimeout(cameraPlugin.getPicture, 300);
             } else { 
                 $('#debug').html("No Camera.");
             }
