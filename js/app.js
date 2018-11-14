@@ -1,33 +1,52 @@
 //
 //
-// default configuration
-var appConfig = {
-    imageSide:'left',
-    recordHighlighted: null
-};
-//
-//    T H E   A P P
-//
 var app = {
-    version : '0.8',
-    targetEvent    : 'click',
-    isCordovaApp       : false,
-    isStorageAvailable : false,
-    isCameraAvailable  : false,
+    version     : '1.0.0',
+    targetEvent : 'click',
+    isLocalStorageAvailable : false,
+    isCameraAvailable : false,
+    isCordova   : false,
+
 
     //
+    hook : function () {
+        $('#allButton').on(app.targetEvent, note.all);
+        $('#clearButton').on(app.targetEvent, function() { note.clear() });
+        $('#exitButton').on(app.targetEvent, function() { navigator.app.exitApp(); });
+        $('#keysButton').on(app.targetEvent, note.getKeys);
+        $('#saveButton').on(app.targetEvent, note.handleInput);
+        $('#summaryButton').on(app.targetEvent, note.summaryOfList);
+    },
+    //
     onDOMContentLoaded : function () {
-        //console.log("app.onDOMContentLoaded()");
-        document.getElementById('version').innerHTML = app.version;
-        document.getElementById('debug').innerHTML   = 'app.onDOMContentLoaded()';
+        //alert("onDOMContentLoads next");
+        //
+        FastClick.attach(document.body);
+        app.targetEvent                           = 'click';
+        app.isCordova                             = (typeof window.cordova !== "undefined");
+        app.isLocalStorageAvailable               = localStore.isStorageAvailable('localStorage');
+        //
+        document.getElementById('appIcon').src    = 'img/bellpepper.png';
+        document.getElementById('test').innerHTML = 'app.onDOMContentLoaded';
+        document.getElementById('isCordova').innerHTML = app.isCordova;
+        document.getElementById('isCordova').style.backgroundColor = '#aaccff'; // blueish color
+        document.getElementById('isLocalStorageAvailable').innerHTML = app.isLocalStorageAvailable;
+        //
+        app.hook();
     },
     //
     onDeviceReady : function () {
-        // console.log("app.onDeviceReady()");
-        // - https://videlais.com/2014/08/21/lessons-learned-from-detecting-apache-cordova/
-        app.isCordovaApp = (typeof window.cordova !== "undefined");
-        document.getElementById('recordSummary').innerHTML = "Device Ready.";
-        document.getElementById('debug').innerHTML  = 'app.onDeviceReady()';
+        //alert("onDeviceReady next");
+        app.targetEvent                           = 'touchend';
+        app.isCordova                             = (typeof window.cordova !== "undefined");
+        app.isCameraAvailable                     = cameraPlugin.isCameraAvailable();
+        //
+        document.getElementById('appIcon').src    = 'img/apple.png';
+        document.getElementById('test').innerHTML = 'app.onDeviceReady';
+        document.getElementById('isCordova').innerHTML               = app.isCordova;
+        document.getElementById('isCordova').style.backgroundColor   = '#ccffcc'; // greenish color
+        document.getElementById('isCameraAvailable').innerHTML       = app.isCameraAvailable;
+        //
+        document.getElementById('exitButton').classList.toggle("hidden", false);
     }
-
 };

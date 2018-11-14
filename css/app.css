@@ -1,0 +1,23 @@
+* {margin:0;padding:0;font-size:large;}
+#appIcon {height:48px;width:48px;}
+#isCordova {background-color:#ffcccc;}
+.hidden {visibility:collapse;display:none;}
+.expose {visibility:visible;display:block;} /* Here for completeness only. */
+.truncate {white-space: nowrap;overflow-x: hidden;overflow: hidden;text-overflow: ellipsis;}
+.thinBorder {border:1px black solid;}
+.smallFont {font-size:x-small;}
+.buttonMargin {margin:0.2em;}
+.textPad {padding:0.2em}
+.spacer {padding:0.5em;}
+
+#notesWrapper {}
+#noteNote {}
+#allButton {cursor:pointer;}
+#clearButton {cursor:pointer;}
+#exitButton {cursor:pointer;float:right;}
+#keysButton {cursor:pointer;}
+#saveButton {cursor:pointer;}
+#summaryButton {cursor:pointer;}
+
+.dbKey {background-color:#ccffcc;}
+
