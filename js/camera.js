@@ -43,7 +43,7 @@ var cameraPlugin = {
         navigator.camera.getPicture(theCallback, cameraPlugin.onFail, 
              {quality: 50, 
               destinationType: Camera.DestinationType.FILE_URI,
-              EncodingType: Camera.EncodingType.JPEG}
+              encodingType: Camera.EncodingType.JPEG}
              );
     },
     //
