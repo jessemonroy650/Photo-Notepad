@@ -22,7 +22,6 @@ var app = {
     init : function () {
         console.log("app.init()");
         FastClick.attach(document.body);
-        $('#version').text(app.version);
         //
         // check for available storage
         //
@@ -91,6 +90,7 @@ var app = {
     },
     //
     onDOMContentLoaded : function () {
+        $('#version').text(app.version);
         console.log("app.onDOMContentLoaded()");
         //app.init();    // Initialize all the modules
         app.hook();    // Hook the touch screen (mouse/keyboard)
@@ -99,6 +99,7 @@ var app = {
     onDeviceReady : function () {
         console.log("app.onDeviceReady()");
 		$('#status').text("Device Ready.");
+		$('#debug').text("Device Ready.");
         // - https://videlais.com/2014/08/21/lessons-learned-from-detecting-apache-cordova/
         app.isCordovaApp = (typeof window.cordova !== "undefined");
         //
