@@ -17,16 +17,16 @@ var app = {
 
     //
     onDOMContentLoaded : function () {
-        console.log("app.onDOMContentLoaded()");
+        //console.log("app.onDOMContentLoaded()");
         document.getElementById('version').innerHTML = app.version;
         document.getElementById('debug').innerHTML   = 'app.onDOMContentLoaded()';
     },
     //
     onDeviceReady : function () {
-        console.log("app.onDeviceReady()");
+        // console.log("app.onDeviceReady()");
         // - https://videlais.com/2014/08/21/lessons-learned-from-detecting-apache-cordova/
         app.isCordovaApp = (typeof window.cordova !== "undefined");
-        document.getElementById('status').innerHTML = "Device Ready.";
+        document.getElementById('recordSummary').innerHTML = "Device Ready.";
         document.getElementById('debug').innerHTML  = 'app.onDeviceReady()';
     }
 

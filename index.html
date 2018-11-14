@@ -10,8 +10,6 @@
                       script-src * 'self' 'unsafe-inline' 'unsafe-eval';" />
 	<meta name="viewport" content="width=device-width">
 	<!-- Resource Information -->
-	<link rel="stylesheet" type="text/css" href=css/buttons.css>
-	<link rel="stylesheet" type="text/css" href=css/messages.css>
 	<link rel="stylesheet" type="text/css" href=css/index.css>
 
 	<script type="text/javascript;" src="cordova.js"></script>
@@ -19,27 +17,13 @@
   </head>
 <body>
 	<div id=header class=header>
-		<img title='configure output' id=menubar  src=images/3menubars_lightgrey.png>
-		<img title=''                 id=app_icon src=images/app-icon.png>
 		<div                          id=app_title>Photo Notepad v<span id=version></span></div>
 	</div>
-    <div id=controlPanel class='clearfix' >
+    <div>
         <span id=recordSummary class='truncate clearfix'></span>
-        <img  title="camera available"       id=imgCamera     class'hidden' src=images/camera.png>
-        <img  title="localstorage available" id=imgLocalStore class'hidden' src=images/storage.png>
     </div>
 
     <div id=debug class='thinBorder smallFont truncate'>&nbsp;</div>
-    <!-- ------------------------------------------------------ -->
-    <div id=recordSpec class="statusWrapper spacer recordSpace hidden">
-    </div>
-    <div class="">
-        <h3>Temporary Holding/Processing Area</h3>
-        <img id=originalImage width=33 >
-        <canvas id=tempCanvas>Canvas not working.</canvas>
-    </div>
-    <div id=appConfig class='statusWrapper hidden'>
-    </div>
 
 </body>
 <script type="text/javascript;">
