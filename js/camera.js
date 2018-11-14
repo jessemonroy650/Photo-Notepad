@@ -2,7 +2,7 @@
 //    
 //
 var cameraPlugin = {
-    version : '0.9.2',
+    version : '0.9.3',
     quality : 50,
     destinationType : {},   // FILE_URI _or_ DATA_URL, // (base64)
     sourceType : {},        //  PHOTOLIBRARY _or_ CAMERA // This is for testing
@@ -36,8 +36,11 @@ var cameraPlugin = {
         }
     },
     //
-    getPicture : function () {
-        navigator.camera.getPicture(cameraPlugin.onSuccess, cameraPlugin.onFail, 
+    getPicture : function (callback) {
+        var theCallback = cameraPlugin.onSuccess;
+        if (callback) { theCallback = callback; }
+        //
+        navigator.camera.getPicture(theCallback, cameraPlugin.onFail, 
             {quality: cameraPlugin.quality, 
              destinationType: cameraPlugin.destinationType,
              sourceType: cameraPlugin.sourceType,

@@ -20,7 +20,13 @@
 #header  {text-align:center;background-color:#f5cc7c;}
 #menubar   {cursor:pointer;border:0;float:right;}
 #appIcon  {cursor:pointer;border:0;float:left;height:48px;width:48px;padding:1px;}
-#appTitle {font-family:monospace;font-size:1.2em;padding:1em;}
+#appTitle {}
+#version {}
+.appTitle  {font-family:monospace;font-size:1.2em;padding:1em 0;}
+
+#photoWrapper {width:100%;}
+#theImage {}
+.theImage {}
 
 
 #notesWrapper {}

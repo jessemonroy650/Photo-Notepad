@@ -25,17 +25,21 @@
 	<div id=header class=header>
 		<img title='configure output' id=menubar  src=img/3menubars_lightgrey.png>
 		<img title=''                 id=appIcon src=img/apple.png>
-		<div                          id=appTitle>Photo Notepad v<span id=version></span></div>
+		<div                          id=appTitle class=appTitle>Photo Notepad v<span id=version class=appTitle></span></div>
 	</div>
 
 
 
     <button type=button id=exitButton class="hidden buttonMargin">Exit</button>
-    <div class=smallFont>
+    <div class='smallFont '>
         <div id="test" class=smallFont>it no worky</div>
         <div class=smallFont>isLocalStorageAvailable <span id=isLocalStorageAvailable class=smallFont>not working</span></div>
         <div class=smallFont>isCameraAvailable <span id=isCameraAvailable class=smallFont>not working</span></div>
         <div class=smallFont>isCordova <span id=isCordova class=smallFont>not working</span></div>
+    </div>
+
+    <div id=photoWrapper class=''> The Image
+        <img id=theImage class='theImage '>
     </div>
     
     <div id=notesWrapper class="" >
