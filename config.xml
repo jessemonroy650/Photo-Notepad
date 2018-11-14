@@ -16,7 +16,9 @@
         <platform name="android" />
 
         <!-- PLUGINS PLUGINS -->
+        <!-- 
         <plugin name="cordova-plugin-camera" spec="~4.0.3" />
         <plugin name="cordova-plugin-device" spec="~2.0.2" />
+        -->
 
     </widget>
