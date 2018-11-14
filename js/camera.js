@@ -41,11 +41,10 @@ var cameraPlugin = {
         if (callback) { theCallback = callback; }
         //
         navigator.camera.getPicture(theCallback, cameraPlugin.onFail, 
-            {quality: cameraPlugin.quality, 
-             destinationType: cameraPlugin.destinationType,
-             sourceType: cameraPlugin.sourceType,
-             encodingType: cameraPlugin.encodingType
-            });
+             {quality: 50, 
+              destinationType: Camera.DestinationType.FILE_URI,
+              EncodingType: Camera.EncodingType.JPEG}
+             );
     },
     //
     // When using `data:`, it is required that `data:` be included in the `Content-Security-Policy`
