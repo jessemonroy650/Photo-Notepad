@@ -44,6 +44,7 @@ var app = {
     //   
     hook : function () {
         console.log("app.hook()");
+        $('#debug').text('app.hook()');
         //  https://developer.mozilla.org/en-US/docs/Web/API/Storage
 		$('#app_icon').click(function(){
             console.log('id:', this.id, " parent: ", this.parentElement.id );
@@ -91,6 +92,7 @@ var app = {
     //
     onDOMContentLoaded : function () {
         $('#version').text(app.version);
+        $('#debug').text('app.hook()');
         console.log("app.onDOMContentLoaded()");
         //app.init();    // Initialize all the modules
         app.hook();    // Hook the touch screen (mouse/keyboard)
