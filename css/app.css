@@ -3,6 +3,7 @@
 .hidden {visibility:collapse;display:none;}
 .expose {visibility:visible;display:block;} /* Here for completeness only. */
 .truncate {white-space: nowrap;overflow-x: hidden;overflow: hidden;text-overflow: ellipsis;}
+.scroll {white-space: nowrap;overflow-x: scroll;overflow-y: hidden;text-overflow: clip;}
 .thinBorder {border:1px black solid;}
 .smallFont {font-size:x-small;}
 .buttonMargin {margin:0.2em;}
