@@ -1,9 +1,11 @@
 * {margin:0;padding:0;font-size:large;}
 .height100percent {height:100%}
+.width100percent {width:100%}
 .hidden {visibility:collapse;display:none;}
 .expose {visibility:visible;display:block;} /* Here for completeness only. */
 .truncate {white-space: nowrap;overflow-x: hidden;overflow: hidden;text-overflow: ellipsis;}
 .scroll {white-space: nowrap;overflow-x: scroll;overflow-y: hidden;text-overflow: clip;}
+.thickBorder {border:3px black solid;}
 .thinBorder {border:1px black solid;}
 .smallFont {font-size:x-small;}
 .buttonMargin {margin:0.2em;}
@@ -35,7 +37,8 @@
 #photoWrapper {width:100%;}
   #theImage {}
   .theImage {width:25%;float:left;}
-
+  .width25percent {width:25%}
+  .thumbnail { /* This "dummy" class let's us grab all images of this class, then get the element-Id */ }
 
 #notesWrapper {}
 #noteNote {}

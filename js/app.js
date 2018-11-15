@@ -3,6 +3,7 @@
 var app = {
     version     : '1.0.0',
     release     : false,
+    debug       : 5,
     targetEvent : 'click',
     isLocalStorageAvailable : false,
     isCordova               : false,

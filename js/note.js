@@ -58,10 +58,13 @@ var note = {
         var theNote = $('#noteNote').val();
         var theImg  = $('#theImage').attr('src');
 
+        // backfill the "img" field while we debug
+        if (app.debug > 4) {
+            theImg = (theImg) ? theImg : 'img/icon.png';
+        }
+
         console.log('epoch: ' + epoch);
         $('#debug').text('epoch: ' + epoch);
-
-        // if (theNote.length == 0) return;
 
         console.log('note: ' + theNote);
         $('#debug').text('note: ' + theNote);
@@ -70,6 +73,9 @@ var note = {
         if ((theImg) && (theNote)) {
             $('#noteNote').val('');
             note.create(epoch, {'note':theNote, 'img':theImg });
+        } else {
+            // RRR
+            alert("no Image or no Note, when saving.");
         }
         //
         // toggle the interface
@@ -112,13 +118,22 @@ var note = {
     all : function () {
         var     len = localStore.len()
         var allNotes = "";
+        var theData  = {};
+
         console.log('all(), len: ', len);
         $('#debug').text('all(), len: ' + len);
 
         for ( var i = 0; i < len; ++i ) {
-            allNotes = "<div class='thinBorder textPad dbKey'>" + localStore.key( i ) + "</div>" +
-                       "<div class='thinBorder textPad'>" + localStore.get(localStore.key(i)) + "</div>" +
-                       allNotes;
+            theData  = JSON.parse( localStore.get( localStore.key(i) ) );
+            allNotes = allNotes +
+                       "<div class='thickBorder width100percent'>" +
+                           "<div class='' >" + 
+                               "<img id=" + localStore.key( i ) +
+                                   " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
+                           "</div>" +
+                           "<div class='thinBorder textPad dbKey'>" + localStore.key( i ) + "</div>" +
+                           "<div class='thinBorder textPad'>" + theData.note + "</div>" +
+                       "</div>";
             console.log(localStore.key( i ),  localStore.get(localStore.key(i)));
         }
         $('#listAll').html(allNotes);
