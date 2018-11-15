@@ -3,11 +3,13 @@
 //
 var cameraPlugin = {
     version : '0.9.3',
-    quality : 50,
-    destinationType : {},   // FILE_URI _or_ DATA_URL, // (base64)
-    sourceType : {},        //  PHOTOLIBRARY _or_ CAMERA // This is for testing
-    mediaType : {},
-    encodingType :  {},     // JPEG _or_ PNG is the default
+    cameraOptions : {
+        quality : 50,
+        destinationType : {},   /* FILE_URI _or_ DATA_URL, // (base64) */
+        sourceType : {},        /*  PHOTOLIBRARY _or_ CAMERA // This is for testing */
+        mediaType : {},
+        encodingType :  {}      /* JPEG _or_ PNG is the default */
+    },
     callback : null,    
 
     isCameraAvailable :  function () {
@@ -16,23 +18,28 @@ var cameraPlugin = {
     init : function (opt) {
         if (opt) {
             if (opt.quality) {
-                cameraPlugin.quality  = opt.quality;
+                cameraPlugin.cameraOptions.quality  = opt.quality;
             }
             if (opt.source) {
-                cameraPlugin.source   = opt.source;
+                cameraPlugin.cameraOptions.source   = opt.source;
             }
             if (opt.encoding) {
-                cameraPlugin.encoding = opt.encoding;
+                cameraPlugin.cameraOptions.encoding = opt.encoding;
             }
             if (opt.callback) {
-                cameraPlugin.callback = opt.callback;
+                cameraPlugin.cameraOptions.callback = opt.callback;
             }
+            if (opt.saveToPhotoAlbum) {
+                cameraPlugin.cameraOptions.saveToPhotoAlbum = opt.saveToPhotoAlbum;
+            }
+
+
         }
-        if (isCameraAvailable() == true) {
-            cameraPlugin.destinationType = Camera.DestinationType.FILE_URI;        // DATA_URL, // (base64)
-            cameraPlugin.sourceType      = Camera.PictureSourceType.PHOTOLIBRARY;  //  CAMERA // This is for testing
-            cameraPlugin.mediaType       = Camera.MediaType.PICTURE;
-            cameraPlugin.encodingType    = Camera.EncodingType.JPEG;               // PNG is the default
+        if (cameraPlugin.isCameraAvailable() == true) {
+            cameraPlugin.cameraOptions.destinationType = Camera.DestinationType.FILE_URI;       // DATA_URL, // (base64)
+            cameraPlugin.cameraOptions.sourceType      = Camera.PictureSourceType.PHOTOLIBRARY; //  CAMERA // This is for testing
+            cameraPlugin.cameraOptions.mediaType       = Camera.MediaType.PICTURE;
+            cameraPlugin.cameraOptions.encodingType    = Camera.EncodingType.JPEG;              // PNG is the default
         }
     },
     //
@@ -43,7 +50,8 @@ var cameraPlugin = {
         navigator.camera.getPicture(theCallback, cameraPlugin.onFail, 
              {quality: 50, 
               destinationType: Camera.DestinationType.FILE_URI,
-              encodingType: Camera.EncodingType.JPEG}
+              encodingType: Camera.EncodingType.JPEG,
+              saveToPhotoAlbum: true}
              );
     },
     //

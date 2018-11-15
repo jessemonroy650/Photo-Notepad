@@ -1,4 +1,5 @@
 //
+//  Need update() - 2018-11-14
 //
 var note = {
     version : '0.8.0',
@@ -25,6 +26,10 @@ var note = {
     //
     delete : function (key) {
         localStore.remove(key);
+    },
+    //
+    numOfRecords : function () {
+        return localStore.len();
     },
     //
     //

@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Photo Notepad</title>
-    <meta http-equiv="Content-Security-Policy"
-             content="default-src * ;
-                      media-src *;
-                      style-src * 'self' 'unsafe-inline' 'unsafe-eval';
-                      script-src * 'self' 'unsafe-inline' 'unsafe-eval';" />
-	<meta name="viewport" content="width=device-width" />
-	<link rel="stylesheet" type="text/css" href="css/buttons.css" >
-	<link rel="stylesheet" type="text/css" href="css/app.css" >
-    <style></style>
-	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" src="js/fastclick.js"></script>
-	<script type="text/javascript" src="js/camera.js"></script>
-	<script type="text/javascript" src="js/localstore.js"></script>
-	<script type="text/javascript" src="js/zepto.js"></script>
-	<script type="text/javascript" src="js/note.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-  </head>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Photo Notepad</title>
+  <meta http-equiv="Content-Security-Policy"
+           content="default-src * ;
+                    media-src *;
+                    style-src * 'self' 'unsafe-inline' 'unsafe-eval';
+                    script-src * 'self' 'unsafe-inline' 'unsafe-eval';" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" type="text/css" href="css/buttons.css" >
+  <link rel="stylesheet" type="text/css" href="css/app.css" >
+  <style></style>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/fastclick.js"></script>
+  <script type="text/javascript" src="js/camera.js"></script>
+  <script type="text/javascript" src="js/localstore.js"></script>
+  <script type="text/javascript" src="js/zepto.js"></script>
+  <script type="text/javascript" src="js/note.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</head>
 <body>
 
 	<div id=header class=header>
@@ -28,10 +28,14 @@
 		<div                          id=appTitle class=appTitle>Photo Notepad v<span id=version class=appTitle></span></div>
 	</div>
 
-
+    <div id=controlPanel class='clearfix' >
+        <span id=recordSummary class='truncate clearfix'></span>
+        <img id=imgCamera     title="camera available"       class='thinBorder hidden' src=img/camera.png>
+        <img id=imgLocalStore title="localstorage available" class='thinBorder hidden' src=img/storage.png>
+    </div>
 
     <button type=button id=exitButton class="hidden buttonMargin">Exit</button>
-    <div class='smallFont hidden'>
+    <div id=debug2 class='smallFont'>
         <div id="test" class=smallFont>it no worky</div>
         <div class=smallFont>isLocalStorageAvailable <span id=isLocalStorageAvailable class=smallFont>not working</span></div>
         <div class=smallFont>isCameraAvailable <span id=isCameraAvailable class=smallFont>not working</span></div>
@@ -45,7 +49,7 @@
         <img id=theImage class='theImage '>
     </div>
     
-    <div id=notesWrapper class="" >
+    <div id=notesWrapper class='hidden' >
         <textarea id=noteNote placeholder="Write your notes here" maxlength=280 cols=28 rows=5 autofocus></textarea>
         <button type=button id=saveButton class="button button-rounded button-action">Save</button>
     </div>
