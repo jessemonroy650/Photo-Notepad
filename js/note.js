@@ -9,7 +9,7 @@ var note = {
     //      C  R  U  D
     //
     create : function (key, text) {
-        localStore.put(key, text);
+        localStore.put(key, JSON.stringify(text));
     },
     //
     read : function (key) {
@@ -38,18 +38,20 @@ var note = {
     //
     handleInput : function (eventContext) {
         var epoch   = Date.now();
-        var theData = $('#noteNote').val();
+        var theNote = $('#noteNote').val();
+        var theImg  = $('#theImage').attr('src');
 
         console.log('epoch: ' + epoch);
         $('#debug').text('epoch: ' + epoch);
 
-        if (theData.length == 0) return;
+        // if (theNote.length == 0) return;
 
-        console.log('note: ' + theData);
-        $('#debug').text('note: ' + theData);
+        console.log('note: ' + theNote);
+        $('#debug').text('note: ' + theNote);
+        $('#debug').text('img: ' + theImg);
 
         $('#noteNote').val('');
-        note.create(epoch, theData);
+        note.create(epoch, {'note':theNote, 'img':theImg });
     },
     //
     getKeys : function () {
