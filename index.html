@@ -44,12 +44,15 @@
 
     <div id=debug class='thinBorder scroll'>&nbsp;</div>
 
-    <div id=photoWrapper class=''> The Image
+    <div id=cameraButtonWrapper class=''> The Image
         <button type=button id=cameraButton class="button button-rounded button-primary">Get Camera</button>
-        <img id=theImage class='theImage '>
     </div>
-    
-    <div id=notesWrapper class='hidden' >
+
+    <div id=photoWrapper class='hidden'>
+        <img id=theImage class='theImage clearfix'>
+    </div>
+
+    <div id=notesWrapper class='' >
         <textarea id=noteNote placeholder="Write your notes here" maxlength=280 cols=28 rows=5 autofocus></textarea>
         <button type=button id=saveButton class="button button-rounded button-action">Save</button>
     </div>

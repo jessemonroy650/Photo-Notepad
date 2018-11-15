@@ -11,7 +11,10 @@ var app = {
     cameraCallback (imgURL) {
         $('#debug').html(imgURL);
         $('#theImage').attr('src', imgURL);
-        $('#notesWrapper').removeClass('hidden');
+        //
+        // toggle the interface
+        //
+        note.photoNoteInterface('photoNote');
     },
     //
     hook : function () {
@@ -92,6 +95,7 @@ var app = {
         document.getElementById('isCameraAvailable').innerHTML       = app.isCameraAvailable;
         if (app.isCameraAvailable) {
             document.getElementById('imgCamera').classList.remove('hidden');
+            note.photoNoteInterface('cameraButton');
         } else {
             document.getElementById('imgCamera').classList.add('hidden');
         }

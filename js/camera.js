@@ -8,38 +8,37 @@ var cameraPlugin = {
         destinationType : {},   /* FILE_URI _or_ DATA_URL, // (base64) */
         sourceType : {},        /*  PHOTOLIBRARY _or_ CAMERA // This is for testing */
         mediaType : {},
-        encodingType :  {}      /* JPEG _or_ PNG is the default */
+        encodingType : {}       /* JPEG _or_ PNG is the default */
     },
     callback : null,    
 
     isCameraAvailable :  function () {
         return (typeof navigator.camera  !== "undefined");
     },
+    //
     init : function (opt) {
-        if (opt) {
-            if (opt.quality) {
-                cameraPlugin.cameraOptions.quality  = opt.quality;
-            }
-            if (opt.source) {
-                cameraPlugin.cameraOptions.source   = opt.source;
-            }
-            if (opt.encoding) {
-                cameraPlugin.cameraOptions.encoding = opt.encoding;
-            }
-            if (opt.callback) {
-                cameraPlugin.cameraOptions.callback = opt.callback;
-            }
-            if (opt.saveToPhotoAlbum) {
-                cameraPlugin.cameraOptions.saveToPhotoAlbum = opt.saveToPhotoAlbum;
-            }
-
-
-        }
         if (cameraPlugin.isCameraAvailable() == true) {
             cameraPlugin.cameraOptions.destinationType = Camera.DestinationType.FILE_URI;       // DATA_URL, // (base64)
             cameraPlugin.cameraOptions.sourceType      = Camera.PictureSourceType.PHOTOLIBRARY; //  CAMERA // This is for testing
             cameraPlugin.cameraOptions.mediaType       = Camera.MediaType.PICTURE;
             cameraPlugin.cameraOptions.encodingType    = Camera.EncodingType.JPEG;              // PNG is the default
+        }
+        if (opt) {
+            if (opt.quality) {
+                cameraPlugin.cameraOptions.quality      = opt.quality;
+            }
+            if (opt.source) {
+                cameraPlugin.cameraOptions.sourceType   = opt.source;
+            }
+            if (opt.encoding) {
+                cameraPlugin.cameraOptions.encodingType = opt.encoding;
+            }
+            if (opt.callback) {
+                cameraPlugin.cameraOptions.callback     = opt.callback;
+            }
+            if (opt.saveToPhotoAlbum) {
+                cameraPlugin.cameraOptions.saveToPhotoAlbum = opt.saveToPhotoAlbum;
+            }
         }
     },
     //

@@ -34,7 +34,7 @@
 
 #photoWrapper {width:100%;}
   #theImage {}
-  .theImage {width:25%;}
+  .theImage {width:25%;float:left;}
 
 
 #notesWrapper {}

@@ -28,8 +28,25 @@ var note = {
         localStore.remove(key);
     },
     //
+    //
+    //
     numOfRecords : function () {
         return localStore.len();
+    },
+    //
+    //
+    //
+    photoNoteInterface : function (mode) {
+        // toggle the interface
+        if (mode == 'cameraButton') {
+            $('#cameraButtonWrapper').removeClass('hidden');
+            $('#notesWrapper').addClass('hidden');
+            $('#photoWrapper').addClass('hidden');
+        } else if (mode == 'photoNote') {
+            $('#cameraButtonWrapper').addClass('hidden');
+            $('#notesWrapper').removeClass('hidden');
+            $('#photoWrapper').removeClass('hidden');
+        }
     },
     //
     //
@@ -50,8 +67,14 @@ var note = {
         $('#debug').text('note: ' + theNote);
         $('#debug').text('img: ' + theImg);
 
-        $('#noteNote').val('');
-        note.create(epoch, {'note':theNote, 'img':theImg });
+        if ((theImg) && (theNote)) {
+            $('#noteNote').val('');
+            note.create(epoch, {'note':theNote, 'img':theImg });
+        }
+        //
+        // toggle the interface
+        //
+        note.photoNoteInterface('cameraButton');
     },
     //
     getKeys : function () {
@@ -105,8 +128,11 @@ var note = {
         console.log('clear()');
         $('#debug').text('clear()');
 
+        // toggle the interface
         $('#listOfKeys').html('');
         $('#listSummary').html('');
+        $('#listAll').html('');
+
         note.keys = [];
         return localStore.clear();
     }
