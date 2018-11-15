@@ -100,17 +100,20 @@ var note = {
     summaryOfList : function () {
         var     len = localStore.len()
         var theList = "";
+        var theData  = {};
+
         console.log('summaryOfList(), len: ', len);
         $('#debug').text('summaryOfList(), len: ' + len);
 
         for ( var i = 0; i < len; ++i ) {
+            theData  = JSON.parse( localStore.get( localStore.key(i) ) );
             theList = "<div class='thickBorder width100percent'>" +
                           "<div class='' >" + 
                               "<img id=" + localStore.key( i ) +
                                    " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
                           "</div>" +
                           "<div class='thinBorder truncate textPad'>" + localStore.key( i ) +
-                              "<span class='thinBorder truncate textPad'>" + localStore.get(localStore.key(i)) + "</span>" +
+                              "<span class='thinBorder truncate textPad'>" + theData.note + "</span>" +
                           "</div>" +
                       "</div>" +
                       theList;
