@@ -24,7 +24,7 @@
 
 	<div id=header class=header>
 		<img title='configure output' id=menubar  src=img/3menubars_lightgrey.png>
-		<img title=''                 id=appIcon src=img/apple.png>
+		<img title=''                 id=appIcon  src=img/apple.png>
 		<div                          id=appTitle class=appTitle>Photo Notepad v<span id=version class=appTitle></span></div>
 	</div>
 
@@ -35,18 +35,14 @@
     </div>
 
     <button type=button id=exitButton class='buttonMargin hidden'>Exit</button>
-    <div id=debug2 class='smallFont hidden'>
-        <div id="test" class=smallFont>it no worky</div>
-        <div class=smallFont>isLocalStorageAvailable <span id=isLocalStorageAvailable class=smallFont>not working</span></div>
-        <div class=smallFont>isCameraAvailable <span id=isCameraAvailable class=smallFont>not working</span></div>
-        <div class=smallFont>isCordova <span id=isCordova class=smallFont>not working</span></div>
-    </div>
+
+    <div id=debug2 class='smallFont hidden'><div id="test" class=smallFont>it no worky</div><div class=smallFont>isLocalStorageAvailable <span id=isLocalStorageAvailable class=smallFont>not working</span></div><div class=smallFont>isCameraAvailable <span id=isCameraAvailable class=smallFont>not working</span></div><div class=smallFont>isCordova <span id=isCordova class=smallFont>not working</span></div></div>
 
     <div id=debug class='thinBorder scrolled'>&nbsp;</div>
 
-    <div id=cameraButtonWrapper class=''> The Image
-        <button type=button id=cameraButton class="button button-rounded button-primary">Get Camera</button>
-    </div>
+    <div id=cameraButtonWrapper
+class='center'><span class=button-wrap><div id=cameraButton
+class='button button-circle button-primary'>Get Camera</div></span></div>
 
     <div id=photoWrapper class='hidden'>
         <img id=theImage class='theImage clearfix'>
@@ -66,9 +62,10 @@
         <button type=button id=allButton class="button button-rounded">All Notes</button>
     </div>
 
+    <div id=listSortedKeys class='scrolled'></div>
     <div id=listOfKeys class='scrolled'></div>
     <div id=listSummary></div>
-    <div id=listAll></div>
+    <div id=listAllSorted></div>
 
 </body>
     <script type="text/javascript" >

@@ -14,6 +14,7 @@
 .recordSpace {margin:0.5em;}
 .clearfix {overflow: auto;}
 .clearfix::after {content: "";clear:both;display:table;}
+.center {margin:auto;text-align:center;}
 
 #debug {background-color:#ff8080;width:100%;line-height:1.2em;}
 #isCordova {background-color:#ffcccc;}

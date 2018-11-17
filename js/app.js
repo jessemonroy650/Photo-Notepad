@@ -33,11 +33,12 @@ var app = {
 
         //
         //  Database
-        $('#allButton').on(app.targetEvent, note.all);
+        $('#allButton').on(app.targetEvent, note.allSorted);
         $('#clearButton').on(app.targetEvent, function() { note.clear() });
         $('#keysButton').on(app.targetEvent, note.getKeys);
         $('#saveButton').on(app.targetEvent, note.handleInput);
         $('#summaryButton').on(app.targetEvent, note.summaryOfList);
+
 
         //
         // Camera
@@ -80,8 +81,13 @@ var app = {
         }
         //
         app.hook();
+        //
+        //  D I S P L A Y  all the images we have so far.
+        //
+        //note.all();
+        note.allSorted();
     },
-    //
+    // 
     onDeviceReady : function () {
         //alert("onDeviceReady next");
         app.targetEvent                           = 'touchend';
@@ -101,6 +107,6 @@ var app = {
             document.getElementById('imgCamera').classList.add('hidden');
         }
         //
-        document.getElementById('exitButton').classList.toggle("hidden", false);
+        document.getElementById('exitButton').classList.remove("hidden");
     }
 };

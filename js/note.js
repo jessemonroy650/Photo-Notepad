@@ -2,8 +2,9 @@
 //  Need update() - 2018-11-14
 //
 var note = {
-    version : '0.8.0',
-    keys    : [],
+    version     : '0.8.8',
+    keys        : [],
+    showForward : true,
 
     //
     //      C  R  U  D
@@ -34,6 +35,23 @@ var note = {
         return localStore.len();
     },
     //
+    _forwardSort : function (a, b) { return a - b },
+    _reverseSort : function (a, b) { return b - a },
+    _getKeys :  function () {
+        var      len = localStore.len();
+        var sortFunc = (note.showForward) ? note._forwardSort : note._reverseSort;
+
+        console.log('_getKeys(), len: ' + len);
+        $('#debug').text('_getKeys(), len: ' + len);
+
+        note.keys = [];
+        for ( var i = 0; i < len; ++i ) {
+            note.keys.push(localStore.key( i ));
+        }
+        // numerical sort function
+        note.keys.sort( function (a, b) { return sortFunc(a, b); } );
+    },
+    //
     //
     //
     photoNoteInterface : function (mode) {
@@ -54,9 +72,12 @@ var note = {
     updateRecord : function () {},
     //
     handleInput : function (eventContext) {
-        var epoch   = Date.now();
-        var theNote = $('#noteNote').val();
-        var theImg  = $('#theImage').attr('src');
+        var epoch        = Date.now();
+        // var calendarDate = (Date(epoch)).toLocaleString();
+        // `key` was an object. Needed to convert to number.
+        var calendarDate = (new Date( Number(epoch) )).toLocaleString();
+        var theNote      = $('#noteNote').val();
+        var theImg       = $('#theImage').attr('src');
 
         // backfill the "img" field while we debug
         if (app.debug > 4) {
@@ -64,88 +85,87 @@ var note = {
         }
 
         console.log('epoch: ' + epoch);
-        $('#debug').text('epoch: ' + epoch);
-
+        //$('#debug').text('epoch: ' + epoch);
+        console.log('calendarDate/len: ' + calendarDate + '/' + calendarDate.length);
+        //$('#debug').text('calendarDate: ' + calendarDate);
         console.log('note: ' + theNote);
-        $('#debug').text('note: ' + theNote);
+        //$('#debug').text('note: ' + theNote);
+        console.log('img: ' + theImg);
         $('#debug').text('img: ' + theImg);
 
         if ((theImg) && (theNote)) {
             $('#noteNote').val('');
-            note.create(epoch, {'note':theNote, 'img':theImg });
+            note.create(epoch, {'note':theNote, 'calendarDate':calendarDate, 'img':theImg });
         } else {
             // RRR
             alert("no Image or no Note, when saving.");
         }
         //
-        // toggle the interface
+        //  T O G G L E   the interface
         //
         note.photoNoteInterface('cameraButton');
+        //
+        //  D I S P L A Y  all the images we have so far.
+        //
+        note.allSorted();
     },
     //
     getKeys : function () {
-        var     len = localStore.len();
-        var theList = "";
-
-        console.log('getKeys(), len: ' + len);
-        $('#debug').text('getKeys(), len: ' + len);
-
-        note.keys = [];
-        for ( var i = 0; i < len; ++i ) {
-            note.keys.push(localStore.key( i ));
-        }
+        note._getKeys();
         $('#listOfKeys').html(note.keys.toString());
     },
     //
     summaryOfList : function () {
-        var     len = localStore.len()
         var theList = "";
         var theData  = {};
 
-        console.log('summaryOfList(), len: ', len);
-        $('#debug').text('summaryOfList(), len: ' + len);
+        note.keys.forEach( function( key ) {
+            theData = JSON.parse( localStore.get( key ) );
+            // `key` was an object. Needed to convert to number.
+            theDate = (new Date( Number(key) )).toLocaleString();
+            //console.log( theDate );
 
-        for ( var i = 0; i < len; ++i ) {
-            theData  = JSON.parse( localStore.get( localStore.key(i) ) );
             theList = "<div class='thickBorder width100percent'>" +
                           "<div class='' >" + 
-                              "<img id=" + localStore.key( i ) +
+                              "<img id=" + key +
                                    " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
                           "</div>" +
-                          "<div class='thinBorder truncate textPad'>" + localStore.key( i ) +
+                          "<div class='thinBorder truncate textPad'>" + theDate +
                               "<span class='thinBorder truncate textPad'>" + theData.note + "</span>" +
                           "</div>" +
                       "</div>" +
                       theList;
-            console.log(localStore.key( i ),  localStore.get(localStore.key(i)));
-        }
+            console.log(key,  localStore.get(key));
+        })
         $('#listSummary').html(theList);
     },
     //
-    //
-    //
-    all : function () {
-        var     len = localStore.len()
+    allSorted : function () {
         var allNotes = "";
         var theData  = {};
+        var calDate  = "";
 
-        console.log('all(), len: ', len);
-        $('#debug').text('all(), len: ' + len);
+        note._getKeys();
 
-        for ( var i = 0; i < len; ++i ) {
-            theData  = JSON.parse( localStore.get( localStore.key(i) ) );
+        note.keys.forEach( function( key ) {
+            theData = JSON.parse( localStore.get( key ) );
+
+            // `key` was an object. Needed to convert to number.
+            theDate = (new Date( Number(key) )).toLocaleString();
+            //console.log( theDate );
+
             allNotes = "<div class='thickBorder width100percent'>" +
                            "<div class='' >" + 
-                               "<img id=" + localStore.key( i ) +
+                               "<img id=" + key +
                                    " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
                            "</div>" +
-                           "<div class='thinBorder textPad dbKey'>" + localStore.key( i ) + "</div>" +
+                           "<div class='thinBorder textPad dbKey'>" + theDate + "</div>" +
                            "<div class='thinBorder textPad'>" + theData.note + "</div>" +
                        "</div>" +
                        allNotes;
-            console.log(localStore.key( i ),  localStore.get(localStore.key(i)));
-        }
-        $('#listAll').html(allNotes);
+            console.log(key,  localStore.get(key));
+        });
+        $('#listAllSorted').html(allNotes);
     },
     //
     clear : function () {
@@ -153,9 +173,10 @@ var note = {
         $('#debug').text('clear()');
 
         // toggle the interface
+        $('#listSortedKeys').html('');
         $('#listOfKeys').html('');
         $('#listSummary').html('');
-        $('#listAll').html('');
+        $('#listAllSorted').html('');
 
         note.keys = [];
         return localStore.clear();
