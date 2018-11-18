@@ -95,6 +95,7 @@ var note = {
         if ((theImg) && (theNote)) {
             $('#noteNote').val('');
             note.create(epoch, {'note':theNote, 'calendarDate':calendarDate, 'img':theImg });
+            $('#appMessage').html("Number of records: " + note.numOfRecords());
         } else {
             // RRR
             alert("no Image or no Note, when saving.");

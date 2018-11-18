@@ -8,6 +8,17 @@ var app = {
     isLocalStorageAvailable : false,
     isCordova               : false,
     isCameraAvailable       : false,
+    emailBlob   : {to:      'jesse650@gmail.com',
+                   subject: 'Test of HTML email & files (img+text)',
+                   body:    '<h1>Nice greetings from Leipzig</h1>',
+                   isHtml:  true,
+                   attachments: [
+                       'file://img/apple.png',
+                       'file://img/bellpepper.png',
+                       'file://css/app.css'
+                   ]
+                  },
+
 
     cameraCallback (imgURL) {
         $('#debug').html(imgURL);
@@ -53,6 +64,17 @@ var app = {
                 app.cameraCallback('img/apple.png');
             }
         });
+        //
+        // EMail
+        $('#emailButton').on(app.targetEvent, function () {
+
+            console.log('#emailButton');
+            document.getElementById('test').innerHTML       = '#shareButton';
+            document.getElementById('mailStatus').innerHTML = 'Getting email app ...';
+            // use a short timeout, otherwise text does not display
+            setTimeout(shareEmail.sendEmail, 200);
+
+        });
     },
     //
     onDOMContentLoaded : function () {
@@ -90,6 +112,7 @@ var app = {
         //  D I S P L A Y  all the images we have so far.
         //
         tabSelector.dispatch(1);
+        shareEmail.init('mailStatus', app.emailBlob);
     },
     // 
     onDeviceReady : function () {
@@ -109,6 +132,10 @@ var app = {
         } else {
             document.getElementById('imgCamera').classList.add('hidden');
         }
+        //
+        cordova.plugins.email.isAvailable(function (isAvailable) {
+            document.getElementById('mailPlugin').innerHTML = shareEmail.isEmailAvailable = isAvailable;
+        });
         // DECIDED NOT TO HAVE AN EXIT BUTTON
         // document.getElementById('exitButton').classList.remove("hidden");
 
@@ -118,5 +145,6 @@ var app = {
         //  D I S P L A Y  all the images we have so far.
         //
         tabSelector.dispatch(1);
+
     }
 };

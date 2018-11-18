@@ -17,6 +17,7 @@
   <script type="text/javascript" src="js/fastclick.js"></script>
   <script type="text/javascript" src="js/zepto.js"></script>
 
+  <script type="text/javascript" src="js/share-email.js"></script>
   <script type="text/javascript" src="js/camera.js"></script>
   <script type="text/javascript" src="js/localstore.js"></script>
   <script type="text/javascript" src="js/tab-selector.js"></script>
@@ -40,7 +41,14 @@
     <button type=button id=exitButton class='buttonMargin hidden'>Exit</button>
 
     <!-- debug messages -->
-    <div id=debug2 class='smallFont hidden'><div id="test" class=smallFont>it no worky</div><div class=smallFont>isLocalStorageAvailable <span id=isLocalStorageAvailable class=smallFont>not working</span></div><div class=smallFont>isCameraAvailable <span id=isCameraAvailable class=smallFont>not working</span></div><div class=smallFont>isCordova <span id=isCordova class=smallFont>not working</span></div></div>
+    <div id=debug2 class='smallFont'>
+        <div id="test" class=smallFont>it no worky</div>
+        <div class=smallFont>isLocalStorageAvailable <span id=isLocalStorageAvailable class=smallFont>not working</span></div>
+        <div class=smallFont>isCameraAvailable <span id=isCameraAvailable class=smallFont>not working</span></div>
+        <div class=smallFont>isCordova <span id=isCordova class=smallFont>not working</span></div>
+        <div class=smallFont>email plugin status <span id=mailPlugin class=smallFont>not available</span></div>
+        <div class=smallFont>email status: <span id=mailStatus class=smallFont>unknown</span></div>
+    </div>
 
     <!-- default `#debug` message. HIDDEN ONCE RELEASED-->
     <div id=debug class='thinBorder scrolled'>&nbsp;</div>
@@ -49,6 +57,8 @@
       -- CAMERA BUTTON
       -->
     <div id=cameraButtonWrapper class='center'><span class=button-wrap><div id=cameraButton class='button button-circle button-primary'>Get Camera</div></span></div>
+    <!-- EMAIL BUTTON -->
+    <div id=emailButtonWrapper class='center'><div id=emailButton class='button button-circle button-action'>Email</div></div>
 
     <!--
       -- The Image we just took 
