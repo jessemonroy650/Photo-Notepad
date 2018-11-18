@@ -8,14 +8,15 @@ var app = {
     isLocalStorageAvailable : false,
     isCordova               : false,
     isCameraAvailable       : false,
+    emailBoilerplate : {subject: 'PhotoNotepad Image and Note',
+                        body:    'The images are in the attachments.\n',
+                       },
     emailBlob   : {to:      'jesse650@gmail.com',
                    subject: 'Test of HTML email & files (img+text)',
-                   body:    '<h1>Nice greetings from Leipzig</h1>',
+                   body:    'The images are in the attachments.',
                    isHtml:  true,
                    attachments: [
-                       'file://img/apple.png',
-                       'file://img/bellpepper.png',
-                       'file://css/app.css'
+                       'file://img/apple.png'
                    ]
                   },
 
@@ -27,6 +28,38 @@ var app = {
         // toggle the interface
         //
         note.photoNoteInterface('photoNote');
+    },
+    setupEmailShare : function () {
+        //
+        // Email Share icon - RRR This is a hack. Using `epoch`
+        $('.shareicon').on(app.targetEvent, function (evt) {
+            var imgId ='', theImg = '', theData = {};
+
+            document.getElementById('debug').innerHTML       = '.shareicon';
+            document.getElementById('appMessage').innerHTML = 'Getting email app ...';
+
+            console.log('.shareicon ' + JSON.stringify(evt) + " target: " + evt.target.id);
+            imgId = evt.target.id.slice(8,);
+            //
+            // IMAGE ID
+            //
+            console.log('imgId: ' + imgId);
+            theImg = document.getElementById(imgId).src;
+            console.log('img: ' + theImg);
+            //
+            // SETUP EMAIL MESSAGE
+            //
+            theData = JSON.parse( localStore.get( imgId ) );
+            theDate = (new Date( Number(imgId) )).toLocaleString();
+
+            app.emailBlob.subject = app.emailBoilerplate.subject;
+            app.emailBlob.body    = app.emailBoilerplate.body + "\nNOTE:" + theData.note + "\nTimestamp:" + theDate;
+            app.emailBlob.attachments = [theImg];
+            console.log(app.emailBlob.body);
+            shareEmail.init('appMessage', app.emailBlob);
+            // use a short timeout, otherwise text does not display
+            //setTimeout(shareEmail.sendEmail, 200);
+        });        
     },
     //
     hook : function () {
@@ -69,8 +102,8 @@ var app = {
         $('#emailButton').on(app.targetEvent, function () {
 
             console.log('#emailButton');
-            document.getElementById('test').innerHTML       = '#shareButton';
-            document.getElementById('mailStatus').innerHTML = 'Getting email app ...';
+            document.getElementById('debug').innerHTML       = '#shareButton';
+            document.getElementById('appMessage').innerHTML = 'Getting email app ...';
             // use a short timeout, otherwise text does not display
             setTimeout(shareEmail.sendEmail, 200);
 
@@ -112,7 +145,7 @@ var app = {
         //  D I S P L A Y  all the images we have so far.
         //
         tabSelector.dispatch(1);
-        shareEmail.init('mailStatus', app.emailBlob);
+        shareEmail.init('appMessage', app.emailBlob);
     },
     // 
     onDeviceReady : function () {

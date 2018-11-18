@@ -39,7 +39,9 @@
   #theImage {}
   .theImage {width:25%;float:left;}
   .width25percent {width:25%}
+  .width24px {cursor:pointer;float:right;height:24px;width:24px;padding:2px 5px;}
   .thumbnail { /* This "dummy" class let's us grab all images of this class, then get the element-Id */ }
+  .shareicon { /* This "dummy" class let's us grab all images of this class, then get the element-Id */ }
 
 #notesWrapper {}
 #noteNote { spellcheck;false; resize: none; border:2px solid #888;}

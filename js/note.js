@@ -139,6 +139,7 @@ var note = {
             console.log(key,  localStore.get(key));
         })
         $('#listSummary').html(theList);
+        app.setupEmailShare();
     },
     //
     allSorted : function () {
@@ -157,6 +158,8 @@ var note = {
 
             allNotes = "<div class='thickBorder width100percent'>" +
                            "<div class='' >" + 
+                               "<img id=imgShare" + key +
+                                   " class='thinBorder width24px clearfix shareicon' src=" + 'img/email-icon.png' + ">" +
                                "<img id=" + key +
                                    " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
                            "</div>" +
@@ -167,6 +170,7 @@ var note = {
             console.log(key,  localStore.get(key));
         });
         $('#listAllSorted').html(allNotes);
+        app.setupEmailShare();
     },
     //
     clear : function () {
