@@ -42,7 +42,7 @@
     <!-- debug messages -->
     <div id=debug2 class='smallFont hidden'><div id="test" class=smallFont>it no worky</div><div class=smallFont>isLocalStorageAvailable <span id=isLocalStorageAvailable class=smallFont>not working</span></div><div class=smallFont>isCameraAvailable <span id=isCameraAvailable class=smallFont>not working</span></div><div class=smallFont>isCordova <span id=isCordova class=smallFont>not working</span></div></div>
 
-    <!-- default `#debug` message -->
+    <!-- default `#debug` message. HIDDEN ONCE RELEASED-->
     <div id=debug class='thinBorder scrolled'>&nbsp;</div>
 
     <!--
@@ -51,7 +51,14 @@
     <div id=cameraButtonWrapper class='center'><span class=button-wrap><div id=cameraButton class='button button-circle button-primary'>Get Camera</div></span></div>
 
     <!--
-      -- PhoteNote
+      -- The Image we just took 
+      -->
+    <div id=photoWrapper class='hidden'>
+        <img id=theImage class='theImage clearfix'>
+    </div>
+
+    <!--
+      -- PhotoNote
       -->
     <div id=notesWrapper class='thinBorder center'>
         <textarea id=noteNote placeholder="Write your notes here" maxlength=280 cols=30 rows=5 autofocus ></textarea>
@@ -59,13 +66,24 @@
     </div>
 
     <!--
-      -- Control TABS
+      -- Work Area (THIS SHOULD ALWAYS BE HIDDEN. UNLESS WE DO AN EXPLICIT BUG)
       -->
+    <div id=workAreaWrapper class='hidden'>
+        <img id=workImage class='theImage clearfix'>
+        <canvas id=workCanvas>Canvas not working.</canvas>
+    </div>
+
     <div id=theTabs class='heightTheBalance'>
+        <!--
+          -- Control TABS
+          -->
         <div id=theTabSelector class='theTabSelector'>
-            <button id=tab1 class='tab tabBorder tabRadius'>Summary</button><!-- This comment correct an HTML reflow bug. Namely, a 'white space' layout feature/bug.
-         --><button id=tab2 class='tab tabBorder tabRadius'>Full</button>
+            <button id=tab1 class='tab tabBorder tabRadius'>Full</button><!-- This comment correct an HTML reflow bug. Namely, a 'white space' layout feature/bug.
+         --><button id=tab2 class='tab tabBorder tabRadius'>Summary</button>
         </div>
+        <!--
+          -- Image Lists
+          -->
         <div id=tab1Data class='tabData height100percent'><div id=listAllSorted></div></div>
         <div id=tab2Data class='tabData height100percent hidden'><div id=listSummary></div></div>
     </div>
@@ -81,19 +99,6 @@
     </div>
     <div class='spacer hidden'>
         <button type=button id=allButton class="button button-rounded">All Notes</button>
-    </div>
-    <!--
-      -- Image Lists
-      -->
-    <div id=listSortedKeys class='scrolled'></div>
-    <div id=listOfKeys class='scrolled'></div>
-
-    <!--
-      -- CAMERA BUTTON
-      -->
-    <div id=photoWrapper class='hidden'>
-        <img id=theImage class='theImage clearfix'>
-        <canvas id=theCanvas>Canvas not working.</canvas>
     </div>
 
 </body>

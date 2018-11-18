@@ -2,7 +2,7 @@
 //  Need update() - 2018-11-14
 //
 var note = {
-    version     : '0.8.8',
+    version     : '0.8.9',
     keys        : [],
     showForward : true,
 
@@ -73,7 +73,6 @@ var note = {
     //
     handleInput : function (eventContext) {
         var epoch        = Date.now();
-        // var calendarDate = (Date(epoch)).toLocaleString();
         // `key` was an object. Needed to convert to number.
         var calendarDate = (new Date( Number(epoch) )).toLocaleString();
         var theNote      = $('#noteNote').val();

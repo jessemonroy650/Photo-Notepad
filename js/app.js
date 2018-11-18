@@ -50,6 +50,7 @@ var app = {
                 setTimeout(cameraPlugin.getPicture, 300);
             } else { 
                 $('#debug').html("No Camera.");
+                app.cameraCallback('img/apple.png');
             }
         });
     },
@@ -76,18 +77,19 @@ var app = {
             document.getElementById('imgLocalStore').classList.add('hidden');
         }
         //
+        note.photoNoteInterface('cameraButton');
+        //
         if (app.release == true) {
             document.getElementById('debug').classList.add('hidden');
             document.getElementById('debug2').classList.add('hidden');
         }
         //
         app.hook();
-        tabSelector.hook();
+        tabSelector.hook(app.targetEvent, note.allSorted, note.summaryOfList);
         //
         //  D I S P L A Y  all the images we have so far.
         //
-        note.allSorted();
-        note.summaryOfList();
+        tabSelector.dispatch(1);
     },
     // 
     onDeviceReady : function () {
@@ -104,11 +106,17 @@ var app = {
         document.getElementById('isCameraAvailable').innerHTML       = app.isCameraAvailable;
         if (app.isCameraAvailable) {
             document.getElementById('imgCamera').classList.remove('hidden');
-            note.photoNoteInterface('cameraButton');
         } else {
             document.getElementById('imgCamera').classList.add('hidden');
         }
+        // DECIDED NOT TO HAVE AN EXIT BUTTON
+        // document.getElementById('exitButton').classList.remove("hidden");
+
         //
-        document.getElementById('exitButton').classList.remove("hidden");
+        tabSelector.hook(app.targetEvent, note.allSorted, note.summaryOfList);
+        //
+        //  D I S P L A Y  all the images we have so far.
+        //
+        tabSelector.dispatch(1);
     }
 };
