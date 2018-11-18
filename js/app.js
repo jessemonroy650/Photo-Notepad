@@ -58,7 +58,7 @@ var app = {
             console.log(app.emailBlob.body);
             shareEmail.init('appMessage', app.emailBlob);
             // use a short timeout, otherwise text does not display
-            //setTimeout(shareEmail.sendEmail, 200);
+            setTimeout(shareEmail.sendEmail, 200);
         });        
     },
     //
