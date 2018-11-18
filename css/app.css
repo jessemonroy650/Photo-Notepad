@@ -29,8 +29,8 @@
 .appTitle  {font-family:monospace;font-size:1.2em;padding:1em 0;}
 
 #controlPanel {width:100%;background-color:#dcd4ac;line-height:52px;}
-  #recordSummary {width:242px;float:left;line-height:1.3em;padding:2px;}
-  #imgCamera      {float:left;height:24px;width:24px;padding:2px 5px;}
+  #appMessage    {width:242px;float:left;line-height:1.3em;padding:2px;}
+  #imgCamera     {float:left;height:24px;width:24px;padding:2px 5px;}
   #imgLocalStore {float:right;height:24px;width:24px;padding:2px 5px;}
 
 
@@ -42,7 +42,7 @@
   .thumbnail { /* This "dummy" class let's us grab all images of this class, then get the element-Id */ }
 
 #notesWrapper {}
-#noteNote {}
+#noteNote { spellcheck;false; resize: none; border:2px solid #888;}
 #allButton {cursor:pointer;}
 #clearButton {cursor:pointer;}
 #exitButton {cursor:pointer;float:right;}

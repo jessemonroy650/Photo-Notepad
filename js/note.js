@@ -108,6 +108,7 @@ var note = {
         //  D I S P L A Y  all the images we have so far.
         //
         note.allSorted();
+        note.summaryOfList();
     },
     //
     getKeys : function () {

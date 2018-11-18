@@ -3,7 +3,7 @@
 var app = {
     version     : '1.0.0',
     release     : false,
-    debug       : 5,
+    debug       : 4,
     targetEvent : 'click',
     isLocalStorageAvailable : false,
     isCordova               : false,
@@ -28,7 +28,7 @@ var app = {
         $('#imgCamera').on(app.targetEvent, function() { $('#debug').html("imgCamera");  });
         $('#imgLocalStore').on(app.targetEvent, function() {
             $('#debug').html("imgLocalStore");
-            $('#recordSummary').html("Number of records: " + note.numOfRecords());
+            $('#appMessage').html("Number of records: " + note.numOfRecords());
         });
 
         //
@@ -71,6 +71,7 @@ var app = {
         document.getElementById('isLocalStorageAvailable').innerHTML = app.isLocalStorageAvailable;
         if (app.isLocalStorageAvailable) {
             document.getElementById('imgLocalStore').classList.remove('hidden');
+            $('#appMessage').html("Number of records: " + note.numOfRecords());
         } else {
             document.getElementById('imgLocalStore').classList.add('hidden');
         }
@@ -81,11 +82,12 @@ var app = {
         }
         //
         app.hook();
+        tabSelector.hook();
         //
         //  D I S P L A Y  all the images we have so far.
         //
-        //note.all();
         note.allSorted();
+        note.summaryOfList();
     },
     // 
     onDeviceReady : function () {
