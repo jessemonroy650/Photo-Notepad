@@ -7,6 +7,8 @@
    Some require `button {outline:0;}` 
    See: https://css-tricks.com/removing-the-dotted-outline/
 */
+#theTabs {margin:0;padding:0;}
+
 #theTabSelector {}
 .theTabSelector {width:100%;margin:0;padding:0;text-align:center;font-size:large;}
 
@@ -20,6 +22,8 @@ button {outline:0;} /* required for Android webview */
 
 #tab1Data {background-color:#93c6e9;}
 #tab2Data {background-color:#CBC9BD;}
-.tabData {width:98%;margin:0;padding:0 0.2em;font-size:medium;}
+.tabData {width:100%;margin:0;padding:0;font-size:medium;}
 
+.thickBorderList {border:2px black solid;border-bottom:none;}
+.textPad {padding:0;}
 .dbKey {background-color:#eeffff;} /* ddffdd */

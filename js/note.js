@@ -128,7 +128,7 @@ var note = {
             theDate = (new Date( Number(key) )).toLocaleString();
             //console.log( theDate );
 
-            theList = "<div class='thickBorder width100percent'>" +
+            theList = "<div class='thickBorderList '>" +
                           "<div class='' >" + 
                               "<img id=" + key +
                                    " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
@@ -158,7 +158,7 @@ var note = {
             theDate = (new Date( Number(key) )).toLocaleString();
             //console.log( theDate );
 
-            allNotes = "<div class='thickBorder width100percent'>" +
+            allNotes = "<div class='thickBorderList '>" +
                            "<div class='' >" + 
                                "<img id=imgShare" + key +
                                    " class='thinBorder width24px clearfix shareicon' src=" + 'img/email-icon.png' + ">" +
