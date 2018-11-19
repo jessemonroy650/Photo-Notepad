@@ -2,7 +2,7 @@
 //
 var app = {
     version     : '0.9.0',
-    release     : false,
+    release     : true,
     debug       : 4,
     targetEvent : 'click',
     isLocalStorageAvailable : false,
