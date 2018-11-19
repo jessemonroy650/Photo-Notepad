@@ -11,13 +11,15 @@
 .theTabSelector {width:100%;margin:0;padding:0;text-align:center;font-size:large;}
 
 button {outline:0;} /* required for Android webview */
-#tab1 {background-color:#5396A9;}
-#tab2 {background-color:#9BA7AD;}
+#tab1 {background-color:#93c6e9;}
+#tab2 {background-color:#;CBC9BD} /* 9BA7AD */
 .tab::-moz-focus-inner {border: 0; } /* required for Firefox desktop */
 .tab  {width:50%; line-height:2em;font-size:large;cursor:pointer;}
 .tabRadius {border-top-left-radius:0.5em;border-top-right-radius:0.5em;}
 .tabBorder {border-top:1px solid black;border-right:1px solid black;border-left:none;border-bottom: none;}
 
-#tab1Data {background-color:#5396A9;}
-#tab2Data {background-color:#9BA7AD;}
+#tab1Data {background-color:#93c6e9;}
+#tab2Data {background-color:#CBC9BD;}
 .tabData {width:98%;margin:0;padding:0 0.2em;font-size:medium;}
+
+.dbKey {background-color:#eeffff;} /* ddffdd */

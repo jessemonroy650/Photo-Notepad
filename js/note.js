@@ -69,7 +69,9 @@ var note = {
     //
     //
     // RRR - Not Used at this time
+    //
     updateRecord : function () {},
+    deleteRecord : function () {},
     //
     handleInput : function (eventContext) {
         var epoch        = Date.now();

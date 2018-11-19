@@ -1,7 +1,7 @@
 //
 //
 var app = {
-    version     : '1.0.0',
+    version     : '0.9.0',
     release     : false,
     debug       : 4,
     targetEvent : 'click',
@@ -9,7 +9,7 @@ var app = {
     isCordova               : false,
     isCameraAvailable       : false,
     emailBoilerplate : {subject: 'PhotoNotepad Image and Note',
-                        body:    'The images are in the attachments.\n',
+                        body:    'The image is in the attachment.\n\n',
                        },
     emailBlob   : {to:      'jesse650@gmail.com',
                    subject: 'Test of HTML email & files (img+text)',
@@ -31,7 +31,7 @@ var app = {
     },
     setupEmailShare : function () {
         //
-        // Email Share icon - RRR This is a hack. Using `epoch`
+        // Email Share icon - RRR Using `epoch` is a hack.
         $('.shareicon').on(app.targetEvent, function (evt) {
             var imgId ='', theImg = '', theData = {};
 
