@@ -5,9 +5,10 @@ var app = {
     release     : true,
     debug       : 4,
     targetEvent : 'click',
-    isLocalStorageAvailable : false,
-    isCordova               : false,
-    isCameraAvailable       : false,
+    isStorageAvailable : false,
+    isCordova          : false,
+    isCameraAvailable  : false,
+    //
     emailBoilerplate : {subject: 'PhotoNotepad Image and Note',
                         body:    'The image is in the attachment.\n\n',
                        },
@@ -49,7 +50,7 @@ var app = {
             //
             // SETUP EMAIL MESSAGE
             //
-            theData = JSON.parse( localStore.get( imgId ) );
+            theData = JSON.parse( note.get( imgId ) );
             theDate = (new Date( Number(imgId) )).toLocaleString();
 
             app.emailBlob.subject = app.emailBoilerplate.subject;
@@ -72,16 +73,32 @@ var app = {
         $('#imgCamera').on(app.targetEvent, function() { $('#debug').html("imgCamera");  });
         $('#imgLocalStore').on(app.targetEvent, function() {
             $('#debug').html("imgLocalStore");
-            $('#appMessage').html("Number of records: " + note.numOfRecords());
+            $('#appMessage').html("Number of notes: " + note.numOfRecords());
         });
 
         //
         //  Database
-        $('#allButton').on(app.targetEvent, note.allSorted);
+        $('#allButton').on(app.targetEvent, function () { 
+            note.allSorted();
+            // setup email hotspots
+            app.setupEmailShare();
+        });
+
+        $('#summaryButton').on(app.targetEvent,  function () { 
+            note.summaryOfList();
+            // setup email hotspots
+            app.setupEmailShare();
+        });
+
+        // save the new `Photo Note`
+        $('#saveButton').on(app.targetEvent, function() {
+            note.handleInput();
+            $('#appMessage').html("Number of notes: " + note.numOfRecords());
+        });
+        // clear the database
         $('#clearButton').on(app.targetEvent, function() { note.clear() });
+        // get the database keys
         $('#keysButton').on(app.targetEvent, note.getKeys);
-        $('#saveButton').on(app.targetEvent, note.handleInput);
-        $('#summaryButton').on(app.targetEvent, note.summaryOfList);
 
 
         //
@@ -110,13 +127,30 @@ var app = {
         });
     },
     //
+    onConfig : function () {
+        var x = window.location.pathname.lastIndexOf('/');
+        var s = window.location.pathname.slice(x+1);
+        var a = s.search(/config|help/)
+        console.log(window.location);
+        $('#message').text(x + ' - str:' + s + ' - answer:' + (a != -1));
+        //
+        configValidate.fillFormFields();
+        //
+        $('#saveConfig').on(app.targetEvent, configValidate.onSave);
+    },
+    //
+    onConfigDevRdy : function () {
+        console.log(window.location);
+        $('#message').text(window.location);
+    },
+    //
     onDOMContentLoaded : function () {
         //alert("onDOMContentLoads next");
         //
         FastClick.attach(document.body);
         app.targetEvent                           = 'click';
         app.isCordova                             = (typeof window.cordova !== "undefined");
-        app.isLocalStorageAvailable               = localStore.isStorageAvailable('localStorage');
+        app.isStorageAvailable                    = note.isStorageAvailable();
         //
         document.getElementById('appIcon').src    = 'img/bellpepper.png';
         document.getElementById('test').innerHTML = 'app.onDOMContentLoaded';
@@ -124,10 +158,10 @@ var app = {
         document.getElementById('isCordova').style.backgroundColor   = '#aaccff'; // blueish color
         document.getElementById('version').innerHTML = app.version;
         //
-        document.getElementById('isLocalStorageAvailable').innerHTML = app.isLocalStorageAvailable;
-        if (app.isLocalStorageAvailable) {
+        document.getElementById('isStorageAvailable').innerHTML = app.isStorageAvailable;
+        if (app.isStorageAvailable) {
             document.getElementById('imgLocalStore').classList.remove('hidden');
-            $('#appMessage').html("Number of records: " + note.numOfRecords());
+            $('#appMessage').html("Number of notes: " + note.numOfRecords());
         } else {
             document.getElementById('imgLocalStore').classList.add('hidden');
         }
@@ -178,6 +212,5 @@ var app = {
         //  D I S P L A Y  all the images we have so far.
         //
         tabSelector.dispatch(1);
-
     }
 };

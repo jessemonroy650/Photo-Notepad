@@ -6,39 +6,17 @@ var note = {
     keys        : [],
     showForward : true,
 
-    //
-    //      C  R  U  D
-    //
-    create : function (key, text) {
-        localStore.put(key, JSON.stringify(text));
+    get : function (id) {
+        return crud.read(id);
     },
-    //
-    read : function (key) {
-        return localStore.get(key);
-    },
-    //
-    update :  function (id, key, value) {
-        var obj = {};
-        obj.id    = id;
-        obj.key   = key;
-        obj.value = value;
-        return localStore.update(obj);
-    },
-    //
-    delete : function (key) {
-        localStore.remove(key);
-    },
-    //
-    //
-    //
-    numOfRecords : function () {
-        return localStore.len();
+    isStorageAvailable : function () {
+        return crud.isStorageAvailable();
     },
     //
     _forwardSort : function (a, b) { return a - b },
     _reverseSort : function (a, b) { return b - a },
     _getKeys :  function () {
-        var      len = localStore.len();
+        var      len = crud.len();
         var sortFunc = (note.showForward) ? note._forwardSort : note._reverseSort;
 
         console.log('_getKeys(), len: ' + len);
@@ -46,13 +24,13 @@ var note = {
 
         note.keys = [];
         for ( var i = 0; i < len; ++i ) {
-            note.keys.push(localStore.key( i ));
+            note.keys.push(crud.key( i ));
         }
         // numerical sort function
         note.keys.sort( function (a, b) { return sortFunc(a, b); } );
     },
     //
-    //
+    //   Toggle the cameraButton/photoNote interface
     //
     photoNoteInterface : function (mode) {
         // toggle the interface
@@ -96,8 +74,7 @@ var note = {
 
         if ((theImg) && (theNote)) {
             $('#noteNote').val('');
-            note.create(epoch, {'note':theNote, 'calendarDate':calendarDate, 'img':theImg });
-            $('#appMessage').html("Number of records: " + note.numOfRecords());
+            crud.create(epoch, {'note':theNote, 'calendarDate':calendarDate, 'img':theImg });
         } else {
             // RRR
             alert("no Image or no Note, when saving.");
@@ -112,6 +89,9 @@ var note = {
         note.allSorted();
         note.summaryOfList();
     },
+    numOfRecords : function () {
+        return crud.len();
+    },
     //
     getKeys : function () {
         note._getKeys();
@@ -123,7 +103,7 @@ var note = {
         var theData  = {};
 
         note.keys.forEach( function( key ) {
-            theData = JSON.parse( localStore.get( key ) );
+            theData = JSON.parse( crud.read( key ) );
             // `key` was an object. Needed to convert to number.
             theDate = (new Date( Number(key) )).toLocaleString();
             //console.log( theDate );
@@ -138,10 +118,9 @@ var note = {
                           "</div>" +
                       "</div>" +
                       theList;
-            console.log(key,  localStore.get(key));
+            console.log(key,  crud.read(key));
         })
         $('#listSummary').html(theList);
-        app.setupEmailShare();
     },
     //
     allSorted : function () {
@@ -152,7 +131,7 @@ var note = {
         note._getKeys();
 
         note.keys.forEach( function( key ) {
-            theData = JSON.parse( localStore.get( key ) );
+            theData = JSON.parse( crud.read( key ) );
 
             // `key` was an object. Needed to convert to number.
             theDate = (new Date( Number(key) )).toLocaleString();
@@ -162,6 +141,8 @@ var note = {
                            "<div class='' >" + 
                                "<img id=imgShare" + key +
                                    " class='thinBorder width24px clearfix shareicon' src=" + 'img/email-icon.png' + ">" +
+                               "<img id=imgDelete" + key +
+                                   " class='thinBorder width24px clearfix deleteicon' src=" + 'img/delete.png' + ">" +
                                "<img id=" + key +
                                    " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
                            "</div>" +
@@ -169,10 +150,9 @@ var note = {
                            "<div class='thinBorder textPad'>" + theData.note + "</div>" +
                        "</div>" +
                        allNotes;
-            console.log(key,  localStore.get(key));
+            console.log(key,  crud.read(key));
         });
         $('#listAllSorted').html(allNotes);
-        app.setupEmailShare();
     },
     //
     clear : function () {
@@ -186,6 +166,6 @@ var note = {
         $('#listAllSorted').html('');
 
         note.keys = [];
-        return localStore.clear();
+        return crud.deleteDB();
     }
 };
