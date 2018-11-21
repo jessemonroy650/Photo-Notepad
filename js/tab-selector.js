@@ -37,4 +37,4 @@ var tabSelector = {
         // RRR DEFINATELY SHOULD NOT USE THIS CHEAT
         $('#tab' + tabSelector.lastSelected).trigger(tabSelector.targetEvent);
     }
-}
+};

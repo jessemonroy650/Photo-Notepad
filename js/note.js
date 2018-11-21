@@ -6,9 +6,7 @@ var note = {
     keys        : [],
     showForward : true,
 
-    get : function (id) {
-        return crud.read(id);
-    },
+    //
     isStorageAvailable : function () {
         return crud.isStorageAvailable();
     },
@@ -44,12 +42,6 @@ var note = {
             $('#photoWrapper').removeClass('hidden');
         }
     },
-    //
-    //
-    // RRR - Not Used at this time
-    //
-    updateRecord : function () {},
-    deleteRecord : function () {},
     //
     handleInput : function (eventContext) {
         var epoch        = Date.now();
@@ -89,6 +81,30 @@ var note = {
         note.allSorted();
         note.summaryOfList();
     },
+    //
+    get : function (id) {
+        return crud.read(id);
+    },
+    //
+    //
+    // RRR - Not Used at this time
+    //
+    updateRecord : function () {},
+    //
+    deleteRecord : function (messageId, key) {
+        response = confirm('Delete record #' + key + "?");
+        console.log("The response to note.deleteRecord() was '" + response + "'");
+        if (response == true) {
+            crud.delete(key);
+            $('#' + messageId).text("Deleted record #" + key);
+        } else {
+            $('#' + messageId).text("User canceled delete.");
+        }
+        return response;
+    },
+    //
+    //
+    //
     numOfRecords : function () {
         return crud.len();
     },
@@ -108,18 +124,16 @@ var note = {
             theDate = (new Date( Number(key) )).toLocaleString();
             //console.log( theDate );
 
-            theList = "<div class='thickBorderList '>" +
-                          "<div class='' >" + 
-                              "<img id=" + key +
-                                   " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
-                          "</div>" +
-                          "<div class='thinBorder truncate textPad'>" + theDate +
-                              "<span class='thinBorder truncate textPad'>" + theData.note + "</span>" +
-                          "</div>" +
+            theList = "<div class='record '>" +
+                          "<img id=" + key +
+                               " class=' floatLeft width25percent thumbnail' src=" + theData.img + ">" +
+                          "<span class=' truncate summaryNote' >" + theData.note + "</span>" +
+                          "<span class=' truncate calendarDate' >" + theDate + "</span>" +
                       "</div>" +
                       theList;
             console.log(key,  crud.read(key));
         })
+        console.log('note.summaryOfList()');
         $('#listSummary').html(theList);
     },
     //
@@ -152,6 +166,7 @@ var note = {
                        allNotes;
             console.log(key,  crud.read(key));
         });
+        console.log('note.allSorted()');
         $('#listAllSorted').html(allNotes);
     },
     //

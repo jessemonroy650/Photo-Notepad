@@ -30,37 +30,20 @@ var app = {
         //
         note.photoNoteInterface('photoNote');
     },
-    setupEmailShare : function () {
+    //
+    handleTab1 : function () {
+        note.allSorted()
         //
-        // Email Share icon - RRR Using `epoch` is a hack.
-        $('.shareicon').on(app.targetEvent, function (evt) {
-            var imgId ='', theImg = '', theData = {};
-
-            document.getElementById('debug').innerHTML       = '.shareicon';
-            document.getElementById('appMessage').innerHTML = 'Getting email app ...';
-
-            console.log('.shareicon ' + JSON.stringify(evt) + " target: " + evt.target.id);
-            imgId = evt.target.id.slice(8,);
-            //
-            // IMAGE ID
-            //
-            console.log('imgId: ' + imgId);
-            theImg = document.getElementById(imgId).src;
-            console.log('img: ' + theImg);
-            //
-            // SETUP EMAIL MESSAGE
-            //
-            theData = JSON.parse( note.get( imgId ) );
-            theDate = (new Date( Number(imgId) )).toLocaleString();
-
-            app.emailBlob.subject = app.emailBoilerplate.subject;
-            app.emailBlob.body    = app.emailBoilerplate.body + "\nNOTE:" + theData.note + "\nTimestamp:" + theDate;
-            app.emailBlob.attachments = [theImg];
-            console.log(app.emailBlob.body);
-            shareEmail.init('appMessage', app.emailBlob);
-            // use a short timeout, otherwise text does not display
-            setTimeout(shareEmail.sendEmail, 200);
-        });        
+        iconSetup.email();
+        // This handles the deletion of records & reset the interface after the record is deleted.
+        iconSetup.delete(app.handleTab1);
+    },
+    //
+    handleTab2 : function () {
+        note.summaryOfList()
+        // At this point there is no icons for email or delete in the summaryList
+        //iconSetup.email();
+        //iconSetup.delete(app.handleTab2);
     },
     //
     hook : function () {
@@ -79,15 +62,20 @@ var app = {
         //
         //  Database
         $('#allButton').on(app.targetEvent, function () { 
+            console.log('#allButton');
             note.allSorted();
             // setup email hotspots
-            app.setupEmailShare();
+            //app.setupEmailShare();
+            iconSetup.email();
+
         });
 
-        $('#summaryButton').on(app.targetEvent,  function () { 
+        $('#summaryButton').on(app.targetEvent,  function () {
+            console.log('#summaryButton');
             note.summaryOfList();
             // setup email hotspots
-            app.setupEmailShare();
+            //app.setupEmailShare();
+            iconSetup.email();
         });
 
         // save the new `Photo Note`
@@ -174,7 +162,7 @@ var app = {
         }
         //
         app.hook();
-        tabSelector.hook(app.targetEvent, note.allSorted, note.summaryOfList);
+        tabSelector.hook(app.targetEvent,  app.handleTab1, app.handleTab2);
         //
         //  D I S P L A Y  all the images we have so far.
         //
@@ -207,7 +195,7 @@ var app = {
         // document.getElementById('exitButton').classList.remove("hidden");
 
         //
-        tabSelector.hook(app.targetEvent, note.allSorted, note.summaryOfList);
+        tabSelector.hook(app.targetEvent, app.handleTab1, app.handleTab2);
         //
         //  D I S P L A Y  all the images we have so far.
         //
