@@ -96,7 +96,7 @@ var note = {
         console.log("The response to note.deleteRecord() was '" + response + "'");
         if (response == true) {
             crud.delete(key);
-            $('#' + messageId).text("Deleted record #" + key);
+            $('#' + messageId).text("Deleted #" + key);
         } else {
             $('#' + messageId).text("User canceled delete.");
         }
