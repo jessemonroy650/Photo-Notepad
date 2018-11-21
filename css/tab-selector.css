@@ -27,8 +27,6 @@ button {outline:0;} /* required for Android webview */
   .shareicon { /* This "dummy" class let's us grab all images of this class, then get the element-Id */ }
   .deleteicon { /* This "dummy" class let's us grab all images of this class, then get the element-Id */ }
   /* imported from `Photo-Notepad-broken` */
-  .record {width:100%;border:1px solid black;height:85px;}
+  .record {width:100%;border:1px solid black;height:110px;}
   .summaryNote  {width:234px;float:right;line-height:1.3em;background-color:#ece8da;padding:1px;}
   .calendarDate {width:234px;float:right;line-height:1.3em;background-color:#dcd4ac;padding:1px;text-align:right;}
-
-

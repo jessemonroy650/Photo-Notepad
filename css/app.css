@@ -13,6 +13,7 @@
 .recordSpace {margin:0.5em;}
 .clearfix {overflow: auto;}
 .clearfix::after {content: "";clear:both;display:table;}
+.clearBoth {clear:both;}
 .center {margin:auto;text-align:center;}
 .floatLeft {float:left}
 .floatRight {float:right}

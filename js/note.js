@@ -124,7 +124,7 @@ var note = {
             theDate = (new Date( Number(key) )).toLocaleString();
             //console.log( theDate );
 
-            theList = "<div class='record '>" +
+            theList = "<div class='record clearfix'>" +
                           "<img id=" + key +
                                " class=' floatLeft width25percent thumbnail' src=" + theData.img + ">" +
                           "<span class=' truncate summaryNote' >" + theData.note + "</span>" +

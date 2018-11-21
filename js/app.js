@@ -1,7 +1,7 @@
 //
 //
 var app = {
-    version     : '0.9.0',
+    version     : '0.9.3',
     release     : true,
     debug       : 4,
     targetEvent : 'click',
