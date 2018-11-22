@@ -2,8 +2,8 @@
 //
 var app = {
     version     : '0.9.3',
-    release     : true,
-    debug       : 4,
+    release     : false,
+    debug       : 5,
     targetEvent : 'click',
     isStorageAvailable : false,
     isCordova          : false,
@@ -32,14 +32,17 @@ var app = {
     },
     //
     handleTab1 : function () {
+        $('#debug').text('app.handleTab1()');
         note.allSorted()
         //
         shareSetup.email();
         // This handles the deletion of records & reset the interface after the record is deleted.
         shareSetup.delete(app.handleTab1);
+        $('#debug').text('app.handleTab1() DONE.');
     },
     //
     handleTab2 : function () {
+        $('#debug').text('app.handleTab2()');
         note.summaryOfList()
         // At this point there is no icons for email or delete in the summaryList
         //shareSetup.email();
