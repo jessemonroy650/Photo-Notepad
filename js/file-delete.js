@@ -4,12 +4,18 @@
 var file = {
     messageSpan : '',
     postFunction : function () {},
+    available : false,
+
+    isAvailable : function () {
+        return file.available = (typeof window.file !== "undefined");
+    },
     //
     init : function (messageSpan, postFunc) {
         file.messageSpan  = messageSpan;
         if (postFunc) {
             file.postFunction = postFunc;
         }
+        return file.isAvailable();
     },
     //
     delete : function (filename, init) {

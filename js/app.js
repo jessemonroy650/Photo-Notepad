@@ -8,6 +8,7 @@ var app = {
     isStorageAvailable : false,
     isCordova          : false,
     isCameraAvailable  : false,
+    isFileAvailable    : false,
     //
     emailBoilerplate : {subject: 'PhotoNotepad Image and Note',
                         body:    'The image is in the attachment.',
@@ -182,7 +183,8 @@ var app = {
         //alert("onDeviceReady next");
         app.targetEvent                           = 'touchend';
         app.isCordova                             = (typeof window.cordova !== "undefined");
-        app.isCameraAvailable                     = cameraPlugin.isCameraAvailable();
+        app.isCameraAvailable                     = (typeof navigator.camera  !== "undefined");
+        app.isFileAvailable                       = (typeof window.file !== "undefined");
         //
         document.getElementById('appIcon').src    = 'img/app-icon.png';
         document.getElementById('test').innerHTML = 'app.onDeviceReady';

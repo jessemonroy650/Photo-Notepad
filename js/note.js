@@ -92,16 +92,17 @@ var note = {
     //
     updateRecord : function () {},
     //
-    deleteRecord : function (messageId, key) {
+    deleteRecord : function (messageId, key, postFunction) {
         response = confirm('Delete record #' + key + "?");
         console.log("The response to note.deleteRecord() was '" + response + "'");
         if (response == true) {
+            file.delete(theDataStr, {msgSpan:'appMessage'});
             crud.delete(key);
             $('#' + messageId).text("Deleted #" + key);
+            postFunction();
         } else {
             $('#' + messageId).text("User canceled delete.");
         }
-        return response;
     },
     //
     //

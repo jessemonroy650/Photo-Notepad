@@ -38,6 +38,7 @@ var shareSetup = {
         });
         console.log('shareSetup.email()');
     },
+
     //
     // setup item delete
     //
@@ -65,13 +66,7 @@ var shareSetup = {
             theData    = JSON.parse( theDataStr );
             theDate    = (new Date( Number(imgId) )).toLocaleString();
             console.log('shareSetup.delete: ', theDataStr);
-            response   = note.deleteRecord('appMessage', imgId);
-            // This function does clean up the caller has asked for - after the record has been deleted.
-            if (response == true) {
-                console.log('calling postFunc()');
-                postFunc();
-                file.delete(theDataStr, {msgSpan:'appMessage'});
-            }
+            response   = note.deleteRecord('appMessage', imgId, postFunc);
         });
         console.log('shareSetup.delete()');
     }
