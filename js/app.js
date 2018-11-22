@@ -1,9 +1,9 @@
 //
 //
 var app = {
-    version     : '0.9.3',
-    release     : false,
-    debug       : 5,
+    version     : '0.9.4',
+    release     : true,
+    debug       : 4,
     targetEvent : 'click',
     isStorageAvailable : false,
     isCordova          : false,

@@ -93,7 +93,7 @@ var note = {
     updateRecord : function () {},
     //
     deleteRecord : function (messageId, key, img, postFunction) {
-        response = confirm('Delete record #' + key + "?");
+        response = confirm('Delete record #' + key + ' and ' + img + '?');
         console.log("The response to note.deleteRecord() was '" + response + "'");
         $('#appMessage').text('Delete response was: ' + response);
         if (response == true) {
@@ -159,7 +159,7 @@ var note = {
                                "<img id=imgShare" + key +
                                    " class='thinBorder width24px clearfix shareicon' src=" + 'img/email-icon.png' + ">" +
                                "<img id=imgDelete" + key +
-                                   " class='thinBorder width24px clearfix deleteicon' src=" + 'img/delete.png' + ">" +
+                                   " class='thinBorder width24px clearfix deleteicon' style='margin:0 20%;' src=" + 'img/delete.png' + ">" +
                                "<img id=" + key +
                                    " class='thinBorder width25percent clearfix thumbnail' src=" + theData.img + ">" +
                            "</div>" +
