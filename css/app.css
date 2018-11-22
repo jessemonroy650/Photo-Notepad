@@ -38,7 +38,7 @@
 
 #photoWrapper {width:100%;}
   #theImage {}
-  .theImage {width:25%;float:left;}
+  .theImage {width:25%;}
   .width25percent {width:25%}
   .width24px {cursor:pointer;float:right;height:24px;width:24px;padding:2px 5px;}
 

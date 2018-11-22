@@ -24,6 +24,7 @@ var app = {
 
     cameraCallback (imgURL) {
         $('#debug').html(imgURL);
+        $('#appMessage').html(imgURL);
         $('#theImage').attr('src', imgURL);
         //
         // toggle the interface
