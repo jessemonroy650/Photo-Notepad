@@ -34,16 +34,16 @@ var app = {
     handleTab1 : function () {
         note.allSorted()
         //
-        iconSetup.email();
+        shareSetup.email();
         // This handles the deletion of records & reset the interface after the record is deleted.
-        iconSetup.delete(app.handleTab1);
+        shareSetup.delete(app.handleTab1);
     },
     //
     handleTab2 : function () {
         note.summaryOfList()
         // At this point there is no icons for email or delete in the summaryList
-        //iconSetup.email();
-        //iconSetup.delete(app.handleTab2);
+        //shareSetup.email();
+        //shareSetup.delete(app.handleTab2);
     },
     //
     hook : function () {
@@ -66,7 +66,7 @@ var app = {
             note.allSorted();
             // setup email hotspots
             //app.setupEmailShare();
-            iconSetup.email();
+            shareSetup.email();
 
         });
 
@@ -75,7 +75,7 @@ var app = {
             note.summaryOfList();
             // setup email hotspots
             //app.setupEmailShare();
-            iconSetup.email();
+            shareSetup.email();
         });
 
         // save the new `Photo Note`

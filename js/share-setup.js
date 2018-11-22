@@ -1,7 +1,7 @@
 //
 //
 //
-var iconSetup = {
+var shareSetup = {
     //
     // setupEmailShare
     //
@@ -36,7 +36,7 @@ var iconSetup = {
             // use a short timeout, otherwise text does not display
             setTimeout(shareEmail.sendEmail, 200);
         });
-        console.log('iconSetup.email()');
+        console.log('shareSetup.email()');
     },
     //
     // setup item delete
@@ -64,14 +64,15 @@ var iconSetup = {
             theDataStr = note.get( imgId );
             theData    = JSON.parse( theDataStr );
             theDate    = (new Date( Number(imgId) )).toLocaleString();
-            console.log('iconSetup.delete: ', theDataStr);
+            console.log('shareSetup.delete: ', theDataStr);
             response   = note.deleteRecord('appMessage', imgId);
             // This function does clean up the caller has asked for - after the record has been deleted.
             if (response == true) {
                 console.log('calling postFunc()');
                 postFunc();
+                file.delete(theDataStr, {msgSpan:'appMessage'});
             }
         });
-        console.log('iconSetup.delete()');
+        console.log('shareSetup.delete()');
     }
 };

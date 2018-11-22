@@ -18,6 +18,8 @@
         <!-- PLUGINS PLUGINS -->
         <plugin name="cordova-plugin-camera" spec="~4.0.3" />
         <plugin name="cordova-plugin-device" spec="~2.0.2" />
+        <plugin name="cordova-plugin-file" spec="~6.0.1" />
+        <!--  3rd party  -->
         <plugin name="cordova-plugin-email" version="~1.2.5" />
 
     </widget>

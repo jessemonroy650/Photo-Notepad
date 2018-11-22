@@ -40,6 +40,7 @@ var note = {
             $('#cameraButtonWrapper').addClass('hidden');
             $('#notesWrapper').removeClass('hidden');
             $('#photoWrapper').removeClass('hidden');
+            $('#noteNote').focus();
         }
     },
     //
