@@ -66,7 +66,7 @@ var shareSetup = {
             theData    = JSON.parse( theDataStr );
             theDate    = (new Date( Number(imgId) )).toLocaleString();
             console.log('shareSetup.delete: ', theDataStr);
-            response   = note.deleteRecord('appMessage', imgId, postFunc);
+            note.deleteRecord('appMessage', imgId, theImg, postFunc);
         });
         console.log('shareSetup.delete()');
     }
