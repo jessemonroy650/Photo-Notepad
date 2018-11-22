@@ -29,7 +29,7 @@ var shareSetup = {
             theDate = (new Date( Number(imgId) )).toLocaleString();
 
             app.emailBlob.subject = app.emailBoilerplate.subject;
-            app.emailBlob.body    = app.emailBoilerplate.body + "\nNOTE:" + theData.note + "\nTimestamp:" + theDate;
+            app.emailBlob.body    = app.emailBoilerplate.body + "\n\nNOTE: " + theData.note + "\nTimestamp: " + theDate;
             app.emailBlob.attachments = [theImg];
             console.log(app.emailBlob.body);
             shareEmail.init('appMessage', app.emailBlob);

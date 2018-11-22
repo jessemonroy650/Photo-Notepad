@@ -10,7 +10,7 @@ var app = {
     isCameraAvailable  : false,
     //
     emailBoilerplate : {subject: 'PhotoNotepad Image and Note',
-                        body:    'The image is in the attachment.\n\n',
+                        body:    'The image is in the attachment.',
                        },
     emailBlob   : {to:      'jesse650@gmail.com',
                    subject: 'Test of HTML email & files (img+text)',
