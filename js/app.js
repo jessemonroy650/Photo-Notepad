@@ -30,6 +30,8 @@ var app = {
         // toggle the interface
         //
         note.photoNoteInterface('photoNote');
+        // reset the icons
+        app.handleTab1();
     },
     //
     handleTab1 : function () {
@@ -98,11 +100,13 @@ var app = {
         $('#cameraButton').on(app.targetEvent, function () {
             if (app.isCameraAvailable == true) {
                 $('#debug').html("Getting Camera ... ");
+                $('#appMessage').html("Getting Camera ... ");
                 cameraPlugin.callback = app.cameraCallback;
                 // use a short timeout, text does not display
                 setTimeout(cameraPlugin.getPicture, 300);
             } else { 
                 $('#debug').html("No Camera.");
+                $('#appMessage').html("No Camera.");
                 app.cameraCallback('img/apple.png');
             }
         });
